@@ -66,12 +66,44 @@ def validator(query):
 
 
 # converts valid query phrase into a valid query
+# automatically done: select star -> select *, percent sign -> %
+# must say: quote/unquote to open/close quote, space to insert space within a quote
 def converter(query):
     # conversions here
     query = query.replace("equals", "=")
     query = query.replace("open parentheses ", "(")
     query = query.replace(" close parentheses", ")")
     query = query.replace("average ", "avg")
+
+    list_query = query.lower().split()
+    where_stoppers = ["and", "or", "order by", "group by", "union"]
+
+    # quotation handling
+    while "quote" in list_query:
+        quote_index = list_query.index("quote")
+        if "unquote" not in list_query:
+            return "error"
+
+        unquote_index = list_query.index("unquote")
+        list_query[quote_index] = "\'"
+        list_query[unquote_index] = "\'"
+
+        while "space" in list_query[quote_index:unquote_index]:
+            list_query[list_query.index("space")] = " "
+
+        list_query[quote_index: unquote_index + 1] = [''.join(list_query[quote_index: unquote_index + 1])]
+
+    if "order" in list_query:
+        order_index = list_query.index("order")
+        if list_query[order_index + 1] == "by":
+            list_query[order_index: order_index + 2] = [' '.join(list_query[order_index: order_index + 2])]
+
+    if "group" in list_query:
+        group_index = list_query.index("group")
+        if list_query[group_index + 1] == "by":
+            list_query[group_index: group_index + 2] = [' '.join(list_query[group_index: group_index + 2])]
+
+    query = " ".join(list_query)
     query = query + ";"
     return query
 
