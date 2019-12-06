@@ -68,6 +68,11 @@ def validator(query):
 # converts valid query phrase into a valid query
 def converter(query):
     # conversions here
+    query = query.replace("equals", "=")
+    query = query.replace("open parentheses ", "(")
+    query = query.replace(" close parentheses", ")")
+    query = query.replace("average ", "avg")
+    query = query + ";"
     return query
 
 
@@ -113,8 +118,10 @@ if __name__ == "__main__":
         # if not, repeat the loop if user has more attempts
         # if no attempts left, the user loses the game
         if valid_query:
-            print("Fetching query...")
             query = converter(guess["transcription"])
+            print("Query Form: {}".format(query))
+            print("Fetching query...")
+
             # send query
             break
         else:
