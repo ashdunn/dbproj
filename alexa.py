@@ -104,11 +104,8 @@ if __name__ == "__main__":
         # determine if the user has won the game
         # if not, repeat the loop if user has more attempts
         # if no attempts left, the user loses the game
-        if guess_is_correct:
-            print("Correct! You win!".format(word))
+        if valid_query:
+            print("Fetching query...")s
             break
-        elif user_has_more_attempts:
-            print("Incorrect. Try again.\n")
         else:
-            print("Sorry, you lose!\nI was thinking of '{}'.".format(word))
-            break
+            print("Sorry, please say a valid query")
