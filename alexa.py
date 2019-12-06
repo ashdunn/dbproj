@@ -105,7 +105,7 @@ if __name__ == "__main__":
         # if not, repeat the loop if user has more attempts
         # if no attempts left, the user loses the game
         if valid_query:
-            print("Fetching query...")s
+            print("Fetching query...")
             break
         else:
             print("Sorry, please say a valid query")
