@@ -52,15 +52,23 @@ def recognize_speech_from_mic(recognizer, microphone):
 
     return response
 
+
+# determines if the input is a valid query phrase
 def validator(query):
     spaceless = query.lower().split()
     if spaceless[0] != "select":
         return False
 
-    if not query.__contains__("from"):
+    if "from" not in query:
         return False
 
     return True
+
+
+# converts valid query phrase into a valid query
+def converter(query):
+    # conversions here
+    return query
 
 
 if __name__ == "__main__":
@@ -106,6 +114,8 @@ if __name__ == "__main__":
         # if no attempts left, the user loses the game
         if valid_query:
             print("Fetching query...")
+            query = converter(guess["transcription"])
+            # send query
             break
         else:
             print("Sorry, please say a valid query")
