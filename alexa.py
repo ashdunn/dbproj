@@ -5,6 +5,7 @@ import speech_recognition as sr
 
 
 def recognize_speech_from_mic(recognizer, microphone):
+
     """Transcribe speech from recorded from `microphone`.
 
     Returns a dictionary with three keys:
@@ -74,6 +75,11 @@ def converter(query):
     query = query.replace("open parentheses ", "(")
     query = query.replace(" close parentheses", ")")
     query = query.replace("average ", "avg")
+    query = query.replace("greater than",">")
+    query = query.replace("less than", "<")
+    query = query.replace("greater than or equal to", ">=")
+    query = query.replace("less than or equal to", "<=")
+
 
     list_query = query.lower().split()
     where_stoppers = ["and", "or", "order by", "group by", "union"]
@@ -113,7 +119,8 @@ if __name__ == "__main__":
 
     # create recognizer and mic instances
     recognizer = sr.Recognizer()
-    microphone = sr.Microphone()
+    microphone = sr.Microphone(device_index=2)
+
 
     # show instructions and wait 3 seconds before starting the game
     print("Please say a query")
