@@ -142,6 +142,16 @@ def execute_query(query):
 
     print(db)
 
+    cursor = db.cursor()
+    cursor.execute("use instacart")
+    cursor.execute(query)
+
+    rows = cursor.fetchall()
+
+    print("Number of Rows: ", len(rows))
+    for row in rows:
+        print(row)
+
 
 def clicked_old():
     prompt.configure(text="Say something...")
@@ -221,14 +231,14 @@ def clicked():
         time.sleep(3)
         prompt.configure(text="Fetching query...")
 
-        ans = execute_query(query)
+        execute_query(query)
 
         # send query
         return
     else:
+        print("your input: ", guess["transcription"])
         prompt.configure(text="Sorry, please say a valid query.")
         return
-
 
 
 if __name__ == "__main__":
