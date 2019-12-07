@@ -150,9 +150,6 @@ def execute_query(query):
 
     rows = cursor.fetchall()
 
-    print("Number of Rows: ", len(rows))
-    for row in rows:
-        print(row)
 
     def on_configure(event):
         # update scrollregion after starting 'mainloop'
@@ -180,6 +177,22 @@ def execute_query(query):
     xscrollbar.config(command=text.xview)
     yscrollbar.config(command=text.yview)
 
+    # print number of result rows
+    text.insert(END, "Number of Rows: " + str(len(rows)))
+    text.insert(END, '\n')
+
+    # determine columns
+    query_split = query.split()
+    if query_split[1] == "*":
+        columns = cursor.description
+        # result = [{columns[index][0] for index, column in enumerate(value)} for value in rows[:3]]
+        for column in columns:
+            text.insert(END, column[0])
+            text.insert(END, "\t")
+            print(column)
+        text.insert(END, "\n")
+
+    # insert the actual query result rows here
     for row in rows:
         text.insert(END, row)
         text.insert(END, '\n')
@@ -224,7 +237,7 @@ def clicked():
 
 if __name__ == "__main__":
 
-    # execute_query("select * from order_products where product_id < 100")
+    execute_query("select * from products where product_id < 100")
     window = Tk()
     window.title("Query Processing")
 
