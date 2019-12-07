@@ -1,6 +1,8 @@
 import mysql.connector as mysql
 import speech_recognition as sr
 from tkinter import *
+import time
+
 
 def recognize_speech_from_mic(recognizer, microphone):
 
@@ -69,6 +71,8 @@ def validator(query):
 # must say: quote/quote to open/close quote, space to insert space within a quote
 def converter(query):
     # conversions here
+    query = query.lower()
+
     query = query.replace("equals", "=")
     query = query.replace("open parentheses ", "(")
     query = query.replace(" close parentheses", ")")
@@ -77,9 +81,20 @@ def converter(query):
     query = query.replace("less than", "<")
     query = query.replace("greater than or equal to", ">=")
     query = query.replace("less than or equal to", "<=")
+    query = query.replace("aisle id", "aisle_id")
+    query = query.replace("department id", "department_id")
+    query = query.replace("product id", "product_id")
+    query = query.replace("order id", "order_id")
+    query = query.replace("user id", "user_id")
+    query = query.replace("product name", "product_name")
+    query = query.replace("order number", "order_number")
+    query = query.replace("order day of week", "order_dow")
+    query = query.replace("order dow", "order_dow")
+    query = query.replace("order hour", "order_hour")
+    query = query.replace("days since prior order", "days_since_prior_order")
+    query = query.replace("add to cart", "add_to_cart")
 
-
-    list_query = query.lower().split()
+    list_query = query.split()
     where_stoppers = ["and", "or", "order by", "group by", "union"]
 
     # quotation handling
@@ -123,6 +138,7 @@ def execute_query(query):
 
     print(db)
 
+
 def clicked():
     prompt.configure(text="Say something...")
 
@@ -163,6 +179,8 @@ def clicked():
         if valid_query:
             query = converter(guess["transcription"])
             prompt.configure(text=("Query Form: {}".format(query)))
+            print(query)
+            time.sleep(3)
             prompt.configure(text="Fetching query...")
 
             ans = execute_query(query)
@@ -171,6 +189,7 @@ def clicked():
             break
         else:
             prompt.configure(text="Sorry, please say a valid query.")
+
 
 if __name__ == "__main__":
 
