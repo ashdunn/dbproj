@@ -1,6 +1,4 @@
-import random
-import time
-
+import mysql.connector as mysql
 import speech_recognition as sr
 
 
@@ -109,6 +107,17 @@ def converter(query):
     return query
 
 
+def execute_query(query):
+    db = mysql.connect(
+        host="localhost",
+        user="root",
+        passwd="ARcs527p",
+        auth_plugin='mysql_native_password'
+    )
+
+    print(db)
+
+
 if __name__ == "__main__":
 
     # create recognizer and mic instances
@@ -154,6 +163,8 @@ if __name__ == "__main__":
             query = converter(guess["transcription"])
             print("Query Form: {}".format(query))
             print("Fetching query...")
+
+            ans = execute_query(query)
 
             # send query
             break
