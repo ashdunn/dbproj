@@ -1,6 +1,6 @@
 import mysql.connector as mysql
 import speech_recognition as sr
-
+from tkinter import *
 
 def recognize_speech_from_mic(recognizer, microphone):
 
@@ -123,17 +123,11 @@ def execute_query(query):
 
     print(db)
 
+def clicked():
+    prompt.configure(text="Say something...")
 
-if __name__ == "__main__":
-
-    # create recognizer and mic instances
     recognizer = sr.Recognizer()
-    microphone = sr.Microphone(device_index=2)
-
-
-    # show instructions and wait 3 seconds before starting the game
-    print("Please say a query")
-    input("Press Enter to continue...")
+    microphone = sr.Microphone()
 
     for i in range(10):
         # get the guess from the user
@@ -150,15 +144,15 @@ if __name__ == "__main__":
                 break
             if not guess["success"]:
                 break
-            print("I didn't catch that. What did you say?\n")
+            prompt.configure(text="I didn't catch that. What did you say?\n")
 
         # if there was an error, stop the game
         if guess["error"]:
-            print("ERROR: {}".format(guess["error"]))
+            prompt.configure(text=("ERROR: {}".format(guess["error"])))
             break
 
         # show the user the transcription
-        print("You said: {}".format(guess["transcription"]))
+        prompt.configure(text=("You said: {}".format(guess["transcription"])))
 
         # determine if guess is correct and if any attempts remain
         valid_query = validator(guess["transcription"])
@@ -168,12 +162,31 @@ if __name__ == "__main__":
         # if no attempts left, the user loses the game
         if valid_query:
             query = converter(guess["transcription"])
-            print("Query Form: {}".format(query))
-            print("Fetching query...")
+            prompt.configure(text=("Query Form: {}".format(query)))
+            prompt.configure(text="Fetching query...")
 
             ans = execute_query(query)
 
             # send query
             break
         else:
-            print("Sorry, please say a valid query")
+            prompt.configure(text="Sorry, please say a valid query.")
+
+if __name__ == "__main__":
+
+    window = Tk()
+    window.title("Query Processing")
+
+    prompt = Label(window, text="Press the button to record your query.")
+    prompt.grid(column = 0, row = 0)
+
+    record = Button(window, text="Record", command = clicked, bg="red")
+
+    record.grid(column=0, row=1)
+
+    window.mainloop()
+
+
+
+
+
