@@ -77,7 +77,11 @@ def converter(query):
     query = query.replace("open parentheses ", "(")
     query = query.replace(" close parentheses", ")")
     query = query.replace("average ", "avg")
-    query = query.replace("greater than",">")
+    query = query.replace("is greater than",">")
+    query = query.replace("is less than", "<")
+    query = query.replace("is greater than or equal to", ">=")
+    query = query.replace("is less than or equal to", "<=")
+    query = query.replace("greater than", ">")
     query = query.replace("less than", "<")
     query = query.replace("greater than or equal to", ">=")
     query = query.replace("less than or equal to", "<=")
@@ -139,7 +143,7 @@ def execute_query(query):
     print(db)
 
 
-def clicked():
+def clicked_old():
     prompt.configure(text="Say something...")
 
     recognizer = sr.Recognizer()
@@ -186,9 +190,45 @@ def clicked():
             ans = execute_query(query)
 
             # send query
-            break
+            return
         else:
             prompt.configure(text="Sorry, please say a valid query.")
+
+
+def clicked():
+    prompt.configure(text="Say something...")
+
+    recognizer = sr.Recognizer()
+    microphone = sr.Microphone()
+
+    guess = recognize_speech_from_mic(recognizer, microphone)
+    if guess["error"]:
+        prompt.configure(text=("ERROR: {}".format(guess["error"])))
+    elif not guess["transcription"]:
+        prompt.configure(text="I didn't catch that. Please try again\n")
+        return
+
+    # show the user the transcription
+    prompt.configure(text=("You said: {}".format(guess["transcription"])))
+
+    # determine if query is acceptable
+    valid_query = validator(guess["transcription"])
+
+    if valid_query:
+        query = converter(guess["transcription"])
+        prompt.configure(text=("Query Form: {}".format(query)))
+        print(query)
+        time.sleep(3)
+        prompt.configure(text="Fetching query...")
+
+        ans = execute_query(query)
+
+        # send query
+        return
+    else:
+        prompt.configure(text="Sorry, please say a valid query.")
+        return
+
 
 
 if __name__ == "__main__":
@@ -197,7 +237,7 @@ if __name__ == "__main__":
     window.title("Query Processing")
 
     prompt = Label(window, text="Press the button to record your query.")
-    prompt.grid(column = 0, row = 0)
+    prompt.grid(column=0, row=0)
 
     record = Button(window, text="Record", command=clicked, bg="red")
 

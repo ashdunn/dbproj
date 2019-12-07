@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="441390e5-78c5-423d-a84a-29fc024e2a0f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alexa.py" beforeDir="false" afterPath="$PROJECT_DIR$/alexa.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,14 +15,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alexa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+            <state relative-caret-position="260">
+              <caret line="222" column="14" lean-forward="true" selection-start-line="222" selection-start-column="14" selection-end-line="222" selection-end-column="14" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#147#1969#0" />
                 <element signature="e#2048#2202#0" />
                 <element signature="e#2427#4080#0" />
                 <element signature="e#4113#4271#0" />
+                <element signature="e#4292#6072#0" />
               </folding>
             </state>
           </provider>
@@ -184,14 +184,15 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/alexa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+        <state relative-caret-position="260">
+          <caret line="222" column="14" lean-forward="true" selection-start-line="222" selection-start-column="14" selection-end-line="222" selection-end-column="14" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
             <element signature="e#147#1969#0" />
             <element signature="e#2048#2202#0" />
             <element signature="e#2427#4080#0" />
             <element signature="e#4113#4271#0" />
+            <element signature="e#4292#6072#0" />
           </folding>
         </state>
       </provider>
