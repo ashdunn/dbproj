@@ -115,10 +115,24 @@ def execute_query(query):
         auth_plugin='mysql_native_password'
     )
 
-    print(db)
+    # print(db)
+
+    # creating an instance of 'cursor' class which is used to execute the 'SQL' statements in 'Python'
+    cursor = db.cursor()
+
+    cursor.execute("use instacart")
+
+    cursor.execute(query)
+
+    records = cursor.fetchall()
+
+    for record in records:
+        print(record)
 
 
 if __name__ == "__main__":
+
+    # execute_query("select * from aisles where aisle_id < 10")
 
     # create recognizer and mic instances
     recognizer = sr.Recognizer()

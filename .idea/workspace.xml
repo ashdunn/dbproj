@@ -15,10 +15,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alexa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="117" column="13" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+            <state relative-caret-position="92">
+              <caret line="117" column="6" selection-start-line="117" selection-start-column="6" selection-end-line="117" selection-end-column="6" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#120#1942#0" />
+                <element signature="e#1970#2135#0" />
+                <element signature="e#2318#3499#0" />
               </folding>
             </state>
           </provider>
@@ -156,6 +159,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="3832" y="-8" width="1376" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49882352" visible="true" weight="0.23467863" />
@@ -179,10 +183,13 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/alexa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="117" column="13" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+        <state relative-caret-position="92">
+          <caret line="117" column="6" selection-start-line="117" selection-start-column="6" selection-end-line="117" selection-end-column="6" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#120#1942#0" />
+            <element signature="e#1970#2135#0" />
+            <element signature="e#2318#3499#0" />
           </folding>
         </state>
       </provider>
