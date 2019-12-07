@@ -97,6 +97,8 @@ def converter(query):
     query = query.replace("order hour", "order_hour")
     query = query.replace("days since prior order", "days_since_prior_order")
     query = query.replace("add to cart", "add_to_cart")
+    query = query.replace("ascending", "asc")
+    query = query.replace("descending", "desc")
 
     list_query = query.split()
     where_stoppers = ["and", "or", "order by", "group by", "union"]
@@ -152,57 +154,36 @@ def execute_query(query):
     for row in rows:
         print(row)
 
+    def on_configure(event):
+        # update scrollregion after starting 'mainloop'
+        # when all widgets are in canvas
+        canvas.configure(scrollregion=canvas.bbox('all'))
 
-def clicked_old():
-    prompt.configure(text="Say something...")
+    root = Tk()
+    # canvas = Canvas(root)
+    # canvas.pack(side=LEFT)
 
-    recognizer = sr.Recognizer()
-    microphone = sr.Microphone()
+    f = Frame(root)
+    f.pack()
 
-    for i in range(10):
-        # get the guess from the user
-        # if a transcription is returned, break out of the loop and
-        #     continue
-        # if no transcription returned and API request failed, break
-        #     loop and continue
-        # if API request succeeded but no transcription was returned,
-        #     re-prompt the user to say their guess again. Do this up
-        #     to PROMPT_LIMIT times
-        for j in range(10):
-            guess = recognize_speech_from_mic(recognizer, microphone)
-            if guess["transcription"]:
-                break
-            if not guess["success"]:
-                break
-            prompt.configure(text="I didn't catch that. What did you say?\n")
+    xscrollbar = Scrollbar(f, orient=HORIZONTAL)
+    xscrollbar.grid(row=1, column=0, sticky=N + S + E + W)
 
-        # if there was an error, stop the game
-        if guess["error"]:
-            prompt.configure(text=("ERROR: {}".format(guess["error"])))
-            break
+    yscrollbar = Scrollbar(f)
+    yscrollbar.grid(row=0, column=1, sticky=N + S + E + W)
 
-        # show the user the transcription
-        prompt.configure(text=("You said: {}".format(guess["transcription"])))
+    text = Text(f, wrap=NONE,
+                xscrollcommand=xscrollbar.set,
+                yscrollcommand=yscrollbar.set)
+    text.grid(row=0, column=0)
 
-        # determine if guess is correct and if any attempts remain
-        valid_query = validator(guess["transcription"])
+    xscrollbar.config(command=text.xview)
+    yscrollbar.config(command=text.yview)
 
-        # determine if the user has won the game
-        # if not, repeat the loop if user has more attempts
-        # if no attempts left, the user loses the game
-        if valid_query:
-            query = converter(guess["transcription"])
-            prompt.configure(text=("Query Form: {}".format(query)))
-            print(query)
-            time.sleep(3)
-            prompt.configure(text="Fetching query...")
-
-            ans = execute_query(query)
-
-            # send query
-            return
-        else:
-            prompt.configure(text="Sorry, please say a valid query.")
+    for row in rows:
+        text.insert(END, row)
+        text.insert(END, '\n')
+    root.mainloop()
 
 
 def clicked():
@@ -243,6 +224,7 @@ def clicked():
 
 if __name__ == "__main__":
 
+    # execute_query("select * from order_products where product_id < 100")
     window = Tk()
     window.title("Query Processing")
 
@@ -252,6 +234,11 @@ if __name__ == "__main__":
     record = Button(window, text="Record", command=clicked, bg="red")
 
     record.grid(column=0, row=1)
+
+    container = Frame(window)
+    canvas = Canvas(container)
+    scrollbar = Scrollbar(container, orient="vertical", command=canvas.yview)
+    scrollable_frame = Frame(canvas)
 
     window.mainloop()
 
