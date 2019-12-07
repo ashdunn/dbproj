@@ -180,7 +180,7 @@ if __name__ == "__main__":
     prompt = Label(window, text="Press the button to record your query.")
     prompt.grid(column = 0, row = 0)
 
-    record = Button(window, text="Record", command = clicked, bg="red")
+    record = Button(window, text="Record", command=clicked, bg="red")
 
     record.grid(column=0, row=1)
 
