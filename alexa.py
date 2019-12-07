@@ -67,7 +67,7 @@ def validator(query):
 
 # converts valid query phrase into a valid query
 # automatically done: select star -> select *, percent sign -> %
-# must say: quote/unquote to open/close quote, space to insert space within a quote
+# must say: quote/quote to open/close quote, space to insert space within a quote
 def converter(query):
     # conversions here
     query = query.replace("equals", "=")
@@ -81,10 +81,11 @@ def converter(query):
     # quotation handling
     while "quote" in list_query:
         quote_index = list_query.index("quote")
-        if "unquote" not in list_query:
+        if "quote" not in list_query[quote_index+1:]:
             return "error"
 
-        unquote_index = list_query.index("unquote")
+        unquote_index = list_query[quote_index+1:].index("quote") + quote_index + 1
+
         list_query[quote_index] = "\'"
         list_query[unquote_index] = "\'"
 
