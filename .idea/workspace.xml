@@ -15,10 +15,9 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alexa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="192" column="25" selection-start-line="192" selection-start-column="25" selection-end-line="192" selection-end-column="25" />
+            <state relative-caret-position="51">
+              <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#147#1969#0" />
                 <element signature="e#2048#2202#0" />
                 <element signature="e#2205#2253#0" />
@@ -240,10 +239,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alexa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="192" column="25" selection-start-line="192" selection-start-column="25" selection-end-line="192" selection-end-column="25" />
+        <state relative-caret-position="51">
+          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
           <folding>
-            <element signature="e#0#31#0" expanded="true" />
             <element signature="e#147#1969#0" />
             <element signature="e#2048#2202#0" />
             <element signature="e#2205#2253#0" />

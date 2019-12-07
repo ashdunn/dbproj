@@ -1,6 +1,7 @@
 import mysql.connector as mysql
 import speech_recognition as sr
 from tkinter import *
+from tkinter import ttk
 import time
 
 
@@ -169,33 +170,47 @@ def execute_query(query):
     yscrollbar = Scrollbar(f)
     yscrollbar.grid(row=0, column=1, sticky=N + S + E + W)
 
-    text = Text(f, wrap=NONE,
-                xscrollcommand=xscrollbar.set,
-                yscrollcommand=yscrollbar.set)
-    text.grid(row=0, column=0)
+    #text = Text(f, wrap=NONE,
+    #            xscrollcommand=xscrollbar.set,
+    #            yscrollcommand=yscrollbar.set)
+    #text.grid(row=0, column=0)
 
-    xscrollbar.config(command=text.xview)
-    yscrollbar.config(command=text.yview)
+    columns = cursor.description
+    col_tuple = ()
+    for column in columns:
+        col_tuple = col_tuple + (column[0],)
+        print(col_tuple)
+
+    tree = ttk.Treeview(f,
+                        columns=col_tuple,
+                        show='headings',
+                        xscrollcommand=xscrollbar.set,
+                        yscrollcommand=yscrollbar.set)
+
+    tree.grid(row=0, column=0)
+
+    for col in col_tuple:
+        tree.heading(col, text=col)
+
+    xscrollbar.config(command=tree.xview)
+    yscrollbar.config(command=tree.yview)
 
     # print number of result rows
-    text.insert(END, "Number of Rows: " + str(len(rows)))
-    text.insert(END, '\n')
-
+    #text.insert(END, "Number of Rows: " + str(len(rows)))
+    #text.insert(END, '\n')
+    '''
     # determine columns
-    query_split = query.split()
-    if query_split[1] == "*":
-        columns = cursor.description
-        # result = [{columns[index][0] for index, column in enumerate(value)} for value in rows[:3]]
-        for column in columns:
-            text.insert(END, column[0])
-            text.insert(END, "\t")
-            print(column)
-        text.insert(END, "\n")
-
+    columns = cursor.description
+    for column in columns:
+        text.insert(END, column[0])
+        text.insert(END, "\t")
+    text.insert(END, "\n")
+    '''
     # insert the actual query result rows here
     for row in rows:
-        text.insert(END, row)
-        text.insert(END, '\n')
+        # text.insert(END, row)
+        # text.insert(END, '\n')
+        tree.insert("", "end", values=row)
     root.mainloop()
 
 
@@ -237,7 +252,7 @@ def clicked():
 
 if __name__ == "__main__":
 
-    execute_query("select * from products where product_id < 100")
+    # execute_query("select * from products where product_id < 100")
     window = Tk()
     window.title("Query Processing")
 
