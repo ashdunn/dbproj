@@ -256,7 +256,7 @@ if __name__ == "__main__":
     user_input = Label(window, text="")
     user_input.grid(column=0, row=3)
 
-    im = PIL.Image.open("/Users/rachelgeorge/Desktop/relationalSchema.png")
+    im = PIL.Image.open("relationalSchema.png")
     photo = PIL.ImageTk.PhotoImage(im)
 
     label = Label(window, image=photo)
