@@ -10,18 +10,22 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="project" />
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alexa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="146" column="6" selection-start-line="146" selection-start-column="6" selection-end-line="146" selection-end-column="6" />
+            <state relative-caret-position="285">
+              <caret line="104" column="42" selection-start-line="104" selection-start-column="42" selection-end-line="104" selection-end-column="42" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#147#1969#0" />
                 <element signature="e#2048#2202#0" />
                 <element signature="e#2205#2253#0" />
-                <element signature="e#2427#4080#0" />
+                <element signature="e#5222#6660#0" />
                 <element signature="e#8406#9440#0" />
               </folding>
             </state>
@@ -246,13 +250,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alexa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="146" column="6" selection-start-line="146" selection-start-column="6" selection-end-line="146" selection-end-column="6" />
+        <state relative-caret-position="285">
+          <caret line="104" column="42" selection-start-line="104" selection-start-column="42" selection-end-line="104" selection-end-column="42" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
+            <element signature="e#147#1969#0" />
             <element signature="e#2048#2202#0" />
             <element signature="e#2205#2253#0" />
-            <element signature="e#2427#4080#0" />
+            <element signature="e#5222#6660#0" />
             <element signature="e#8406#9440#0" />
           </folding>
         </state>

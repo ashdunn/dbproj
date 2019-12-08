@@ -74,6 +74,9 @@ def converter(query):
     # conversions here
     query = query.lower()
 
+    query = query.replace(" isles", " aisles")
+    query = query.replace(" isle", " aisle")
+    query = query.replace("i'll", "aisle")
     query = query.replace("equals", "=")
     query = query.replace("open parentheses ", "(")
     query = query.replace(" close parentheses", ")")
@@ -101,6 +104,7 @@ def converter(query):
     query = query.replace("ascending", "asc")
     query = query.replace("descending", "desc")
     query = query.replace("order products", "order_products")
+
 
     list_query = query.split()
     where_stoppers = ["and", "or", "order by", "group by", "union"]
