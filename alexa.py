@@ -100,6 +100,7 @@ def converter(query):
     query = query.replace("add to cart", "add_to_cart")
     query = query.replace("ascending", "asc")
     query = query.replace("descending", "desc")
+    query = query.replace("order products", "order_products")
 
     list_query = query.split()
     where_stoppers = ["and", "or", "order by", "group by", "union"]
@@ -143,70 +144,56 @@ def execute_query(query):
         auth_plugin='mysql_native_password'
     )
 
-    print(db)
+    # print(db)
 
     cursor = db.cursor()
     cursor.execute("use instacart")
 
     try:
         cursor.execute(query)
+        rows = cursor.fetchall()
+
+        root = Tk()
+        title = "Query: " + query + " Rows: " + str(len(rows))
+        root.title(title)
+
+        f = Frame(root)
+        f.pack()
+
+        xscrollbar = Scrollbar(f, orient=HORIZONTAL)
+        xscrollbar.grid(row=1, column=0, sticky=N + S + E + W)
+
+        yscrollbar = Scrollbar(f)
+        yscrollbar.grid(row=0, column=1, sticky=N + S + E + W)
+
+        columns = cursor.description
+        col_tuple = ()
+        for column in columns:
+            col_tuple = col_tuple + (column[0],)
+
+        tree = ttk.Treeview(f,
+                            columns=col_tuple,
+                            show='headings',
+                            xscrollcommand=xscrollbar.set,
+                            yscrollcommand=yscrollbar.set)
+
+        tree.grid(row=0, column=0)
+
+        for col in col_tuple:
+            tree.heading(col, text=col)
+
+        xscrollbar.config(command=tree.xview)
+        yscrollbar.config(command=tree.yview)
+
+        # insert the actual query result rows here
+        for row in rows:
+            # text.insert(END, row)
+            # text.insert(END, '\n')
+            tree.insert("", "end", values=row)
+        root.mainloop()
+
     except mysql.Error as e:
         prompt.configure(text=e)
-
-    rows = cursor.fetchall()
-
-    root = Tk()
-
-    f = Frame(root)
-    f.pack()
-
-    xscrollbar = Scrollbar(f, orient=HORIZONTAL)
-    xscrollbar.grid(row=1, column=0, sticky=N + S + E + W)
-
-    yscrollbar = Scrollbar(f)
-    yscrollbar.grid(row=0, column=1, sticky=N + S + E + W)
-
-    #text = Text(f, wrap=NONE,
-    #            xscrollcommand=xscrollbar.set,
-    #            yscrollcommand=yscrollbar.set)
-    #text.grid(row=0, column=0)
-
-    columns = cursor.description
-    col_tuple = ()
-    for column in columns:
-        col_tuple = col_tuple + (column[0],)
-
-    tree = ttk.Treeview(f,
-                        columns=col_tuple,
-                        show='headings',
-                        xscrollcommand=xscrollbar.set,
-                        yscrollcommand=yscrollbar.set)
-
-    tree.grid(row=0, column=0)
-
-    for col in col_tuple:
-        tree.heading(col, text=col)
-
-    xscrollbar.config(command=tree.xview)
-    yscrollbar.config(command=tree.yview)
-
-    # print number of result rows
-    #text.insert(END, "Number of Rows: " + str(len(rows)))
-    #text.insert(END, '\n')
-    '''
-    # determine columns
-    columns = cursor.description
-    for column in columns:
-        text.insert(END, column[0])
-        text.insert(END, "\t")
-    text.insert(END, "\n")
-    '''
-    # insert the actual query result rows here
-    for row in rows:
-        # text.insert(END, row)
-        # text.insert(END, '\n')
-        tree.insert("", "end", values=row)
-    root.mainloop()
 
 
 def clicked():
@@ -226,7 +213,8 @@ def clicked():
     prompt.configure(text=("You said: {}".format(guess["transcription"])))
 
     # determine if query is acceptable
-    valid_query = validator(guess["transcription"])
+    # valid_query = validator(guess["transcription"])
+    valid_query = True
 
     if valid_query:
         query = converter(guess["transcription"])
