@@ -19,11 +19,11 @@ python3 alexa.py
 
 ### Prerequisites
 
-python3
-pyaudio
-tkinter
-speech_recognition
-pillow
+* python3
+* pyaudio
+* tkinter
+* speech_recognition
+* pillow
 
 ## Authors
 
