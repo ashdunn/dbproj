@@ -147,19 +147,15 @@ def execute_query(query):
 
     cursor = db.cursor()
     cursor.execute("use instacart")
-    cursor.execute(query)
+
+    try:
+        cursor.execute(query)
+    except mysql.Error as e:
+        prompt.configure(text=e)
 
     rows = cursor.fetchall()
 
-
-    def on_configure(event):
-        # update scrollregion after starting 'mainloop'
-        # when all widgets are in canvas
-        canvas.configure(scrollregion=canvas.bbox('all'))
-
     root = Tk()
-    # canvas = Canvas(root)
-    # canvas.pack(side=LEFT)
 
     f = Frame(root)
     f.pack()
@@ -179,7 +175,6 @@ def execute_query(query):
     col_tuple = ()
     for column in columns:
         col_tuple = col_tuple + (column[0],)
-        print(col_tuple)
 
     tree = ttk.Treeview(f,
                         columns=col_tuple,
@@ -235,17 +230,17 @@ def clicked():
 
     if valid_query:
         query = converter(guess["transcription"])
-        prompt.configure(text=("Query Form: {}".format(query)))
-        print(query)
-        time.sleep(3)
         prompt.configure(text="Fetching query...")
+        your_input = "Your Query: " + query
+        user_input.configure(text=your_input)
 
         execute_query(query)
 
         # send query
         return
     else:
-        print("your input: ", guess["transcription"])
+        your_input = "Your Input: " + guess["transcription"]
+        user_input.configure(text=your_input)
         prompt.configure(text="Sorry, please say a valid query.")
         return
 
@@ -262,6 +257,9 @@ if __name__ == "__main__":
     record = Button(window, text="Record", command=clicked, bg="red")
 
     record.grid(column=0, row=1)
+
+    user_input = Label(window, text="")
+    user_input.grid(column=0, row=3)
 
     container = Frame(window)
     canvas = Canvas(container)

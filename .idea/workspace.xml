@@ -15,10 +15,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alexa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+            <state relative-caret-position="212">
+              <caret line="195" column="7" lean-forward="true" selection-start-line="195" selection-start-column="7" selection-end-line="195" selection-end-column="7" />
               <folding>
-                <element signature="e#147#1969#0" />
+                <element signature="e#0#31#0" expanded="true" />
                 <element signature="e#2048#2202#0" />
                 <element signature="e#2205#2253#0" />
                 <element signature="e#2427#4080#0" />
@@ -47,6 +47,12 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>on_configure</find>
+      <find>print</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -239,10 +245,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/alexa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" lean-forward="true" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        <state relative-caret-position="212">
+          <caret line="195" column="7" lean-forward="true" selection-start-line="195" selection-start-column="7" selection-end-line="195" selection-end-column="7" />
           <folding>
-            <element signature="e#147#1969#0" />
+            <element signature="e#0#31#0" expanded="true" />
             <element signature="e#2048#2202#0" />
             <element signature="e#2205#2253#0" />
             <element signature="e#2427#4080#0" />
