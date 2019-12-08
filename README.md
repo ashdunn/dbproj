@@ -24,6 +24,7 @@ python3 alexa.py
 * tkinter
 * speech_recognition
 * pillow
+* Local MySQL Instacart Database
 
 ## Authors
 
