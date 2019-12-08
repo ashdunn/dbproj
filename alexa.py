@@ -2,7 +2,8 @@ import mysql.connector as mysql
 import speech_recognition as sr
 from tkinter import *
 from tkinter import ttk
-import time
+import PIL.Image
+import PIL.ImageTk
 
 
 def recognize_speech_from_mic(recognizer, microphone):
@@ -254,6 +255,13 @@ if __name__ == "__main__":
 
     user_input = Label(window, text="")
     user_input.grid(column=0, row=3)
+
+    im = PIL.Image.open("/Users/rachelgeorge/Desktop/relationalSchema.png")
+    photo = PIL.ImageTk.PhotoImage(im)
+
+    label = Label(window, image=photo)
+    label.image = photo  # keep a reference!
+    label.grid(column=0, row=4)
 
     container = Frame(window)
     canvas = Canvas(container)
