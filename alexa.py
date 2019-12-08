@@ -74,6 +74,8 @@ def converter(query):
     # conversions here
     query = query.lower()
 
+    query = query.replace("so what", "select")
+    query = query.replace("iowa id", "aisle_id")
     query = query.replace(" isles", " aisles")
     query = query.replace(" isle", " aisle")
     query = query.replace("i'll", "aisle")
