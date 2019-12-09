@@ -82,7 +82,9 @@ def converter(query):
     query = query.replace("i'll", "aisle")
     query = query.replace("equals", "=")
     query = query.replace("open parentheses ", "(")
-    query = query.replace(" close parentheses", ")")
+    query = query.replace("close parentheses", ")")
+    query = query.replace("open parenthesis ", "(")
+    query = query.replace("close parenthesis", ")")
     query = query.replace("average ", "avg")
     query = query.replace("is greater than",">")
     query = query.replace("is less than", "<")
@@ -107,6 +109,11 @@ def converter(query):
     query = query.replace("ascending", "asc")
     query = query.replace("descending", "desc")
     query = query.replace("order products", "order_products")
+    query = query.replace("count (", "count(")
+    query = query.replace("max (", "max(")
+    query = query.replace("min (", "count(")
+    query = query.replace("avg (", "avg(")
+
 
 
     list_query = query.split()
@@ -159,6 +166,8 @@ def execute_query(query):
     try:
         cursor.execute(query)
         rows = cursor.fetchall()
+
+
 
         root = Tk()
         title = "Query: " + query + " Rows: " + str(len(rows))
