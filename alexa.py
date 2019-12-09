@@ -113,6 +113,7 @@ def converter(query):
     query = query.replace("max (", "max(")
     query = query.replace("min (", "count(")
     query = query.replace("avg (", "avg(")
+    query = query.replace("sum (", "sum(")
 
 
 
