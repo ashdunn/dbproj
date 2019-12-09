@@ -111,7 +111,9 @@ def converter(query):
     query = query.replace("order products", "order_products")
     query = query.replace("count (", "count(")
     query = query.replace("max (", "max(")
-    query = query.replace("min (", "count(")
+    query = query.replace("min (", "min(")
+    query = query.replace("maximum (", "max(")
+    query = query.replace("minimum (", "min(")
     query = query.replace("avg (", "avg(")
     query = query.replace("sum (", "sum(")
 
