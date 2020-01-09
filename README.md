@@ -31,7 +31,7 @@ cd dbproj
 python3 alexa.py
 ```
 
-### Input: 
+### Input
  * Spoken MySQL query
  * Must verbalize symbols: comma, quote, space (within quotes only), open/close parenthesis, percent sign
 ### Output
