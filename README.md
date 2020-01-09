@@ -1,4 +1,4 @@
-# dbproj
+# Speech Recognition for Instacart Database Queries
 
 This application allows you to use speech recognition to execute queries on the Instacart MySQL database.
 
